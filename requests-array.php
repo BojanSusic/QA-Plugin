@@ -131,5 +131,10 @@
            'title' => 'There is no old data in settings',
            'description' => '',
        ],
+       [
+           'checked' => 0,
+           'title' => '',
+           'description' => '',
+       ],
 
     ];
