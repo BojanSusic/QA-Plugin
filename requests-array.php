@@ -4,7 +4,7 @@
         [
             'checked' => 0,
             'title' => 'Favicon set',
-            'description' => 'On frontend and Wp-admin also',
+            'description' => '',
         ],
        [
            'checked' => 0,
@@ -113,11 +113,6 @@
        ],
        [
            'checked' => 0,
-           'title' => 'Redirect after contact form works',
-           'description' => '',
-       ],
-       [
-           'checked' => 0,
            'title' => 'Wincasa alarm works',
            'description' => 'Subscribe, redirect, error, e-mail',
        ],
@@ -133,7 +128,27 @@
        ],
        [
            'checked' => 0,
-           'title' => '',
+           'title' => 'All pages have hero image',
+           'description' => '',
+       ],
+       [
+           'checked' => 0,
+           'title' => 'Flat Info has regular flats',
+           'description' => '',
+       ],
+       [
+           'checked' => 0,
+           'title' => 'Link added to task card and website list',
+           'description' => '',
+       ],
+       [
+           'checked' => 0,
+           'title' => 'Liegenschaft text same as on the design',
+           'description' => '',
+       ],
+       [
+           'checked' => 0,
+           'title' => 'H1 exist on every page and there is just one per page',
            'description' => '',
        ],
 

@@ -4,19 +4,18 @@
  * Plugin URI: https://singularity.is
  * Author: Miljana Pinic, Bojan Susic, Djordje Avram
  * Description: This is a qa plugin with checklist for object web pages
- * Version: 1.0.5
+ * Version: 1.1
  * GitHub Plugin URI: BojanSusic/qa-plugin.git
  * GitHub Plugin URI: https://github.com/BojanSusic/qa-plugin.git
  **/
-
 
 
 /*
  * TODO
  *
  * Separate checkboxes for staging and for production
- * Add time when someone check checkbox
  * Add icon in menu
+ *
  *
  *
  */
@@ -31,7 +30,7 @@ include_once $path . '/wp-load.php';
 include_once $path . '/wp-includes/wp-db.php';
 include_once $path . '/wp-includes/pluggable.php';
 require_once 'qa-plugin-functionality.php';
-require_once 'qa-plugin-frontend.php' ;
+require_once 'qa-plugin-frontend.php';
 
 add_action('admin_menu', 'show_qa_plugin');
 function show_qa_plugin()
@@ -70,15 +69,16 @@ function create_qa_checkboxes()
     ) $charset_collate;";
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
     dbDelta($sql);
-	$sql2 = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}qa_history` (
+    $sql2 = "CREATE TABLE IF NOT EXISTS `{$wpdb->base_prefix}qa_history` (
             id INTEGER NOT NULL AUTO_INCREMENT,
 			checked TINYINT,
 			username varchar(200),
             request_id int,
+            update_time  varchar(20),
 		    FOREIGN KEY (request_id) REFERENCES {$wpdb->base_prefix}qa_checkboxes(id),
             PRIMARY KEY (id)
     ) $charset_collate;";
-	dbDelta($sql2);
+    dbDelta($sql2);
 }
 
 function insert_qa_requests()
@@ -86,12 +86,23 @@ function insert_qa_requests()
     global $wpdb;
 
     $table_name = $wpdb->prefix . 'qa_checkboxes';
+
+    $checkboxes = $wpdb->get_results("SELECT * FROM `{$wpdb->base_prefix}qa_checkboxes`");
+
     require_once('requests-array.php');
     foreach ($requests_array as $data) {
-        $wpdb->insert(
-            $table_name,
-            $data
-        );
+        $found = false;
+        foreach ($checkboxes as $checkbox) {
+            if($checkbox->title == $data['title']){
+                $found=true;
+            }
+        }
+        if (!$found){
+            $wpdb->insert(
+                $table_name,
+                $data
+            );
+        }
     }
 }
 
@@ -101,15 +112,15 @@ add_action('rest_api_init', function () {
         'methods' => 'POST',
         'callback' => 'update_qa_requests_comment',
     ));
-	 register_rest_route('qa_plugin/', 'update_checked', array(
+    register_rest_route('qa_plugin/', 'update_checked', array(
         'methods' => 'POST',
         'callback' => 'update_checklist',
     ));
-	register_rest_route('qa_plugin/', 'insert', array(
+    register_rest_route('qa_plugin/', 'insert', array(
         'methods' => 'POST',
         'callback' => 'insert_request',
     ));
-	register_rest_route('qa_plugin/', 'delete', array(
+    register_rest_route('qa_plugin/', 'delete', array(
         'methods' => 'GET',
         'callback' => 'delete',
     ));

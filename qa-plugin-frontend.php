@@ -40,7 +40,7 @@ function front_qa_plugin()
 				<?php $historyText = ''?>
 				<?php if($history != null ): ?>
 				<?php foreach($history as $i => $hisRow): ?>
-				<?php $historyText .= ($hisRow->checked == 1) ? ($i+1).'. '.$hisRow->username.' has checked </br>' : ($i+1).'. '.$hisRow->username.' has unchecked </br>';?>
+				<?php $historyText .= ($hisRow->checked == 1) ? ($i+1).'. '.$hisRow->username.' has checked at '.date('m.d.Y H:i', $hisRow->update_time) .'</br>' : ($i+1).'. '.$hisRow->username.' has unchecked at '.date('m.d.Y H:i', $hisRow->update_time) .'</br>';?>
 				<?php endforeach; ?>
 				<?php endif; ?>
                 <tr name="tableRow" id="row<?= $row->id ?>">

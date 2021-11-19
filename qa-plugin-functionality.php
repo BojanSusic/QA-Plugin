@@ -27,13 +27,13 @@ function update_checklist() {
     $table_primary = $wpdb->prefix . 'qa_checkboxes';
 	$table_history = $wpdb->prefix . 'qa_history';
 	$dbResult = $wpdb->update($table_primary, array('checked' => $data['checked']), array('id' => $data['id']));
-	$dbResult = $wpdb->insert($table_history, array('checked' => $data['checked'],'username'=>$data['name'],'request_id' => $data['id']));
+	$dbResult = $wpdb->insert($table_history, array('checked' => $data['checked'],'username'=>$data['name'],'request_id' => $data['id'], 'update_time'=>time()));
 	$history =  $wpdb->get_results("SELECT * FROM `{$wpdb->base_prefix}qa_history` WHERE `request_id`=". $data['id']."  ORDER BY `id` DESC LIMIT 5");
 	$historyText = '';
 	if($history != null ) {
 		
 		foreach($history as $i=>$hisRow){
-			$historyText .= ($hisRow->checked == 1) ? ($i+1).'. '.$hisRow->username.' has checked </br>' : ($i+1).'. '.$hisRow->username.' has unchecked </br>';
+			$historyText .= ($hisRow->checked == 1) ? ($i+1).'. '.$hisRow->username.' has checked at '.date('m.d.Y H:i', $hisRow->update_time) .'</br>' : ($i+1).'. '.$hisRow->username.' has unchecked at '.date('m.d.Y H:i', $hisRow->update_time) .'</br>';
 		}	
 	}
 	return json_encode($historyText);
