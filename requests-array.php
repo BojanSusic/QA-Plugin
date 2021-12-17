@@ -150,11 +150,16 @@
            'checked' => 0,
            'title' => 'H1 exist on every page and there is just one per page',
            'description' => '',
-       ],
-      [
-           'checked' => 0,
-           'title' => 'Delete old images',
-           'description' => '',
-       ],
+       ], 
+       [
+        'checked' => 0,
+        'title' => 'Delete old images',
+        'description' => '',
+        ],
+        [
+            'checked' => 0,
+            'title' => 'Enable cache',
+            'description' => '',
+        ],
 
     ];
