@@ -161,5 +161,10 @@
             'title' => 'Enable cache',
             'description' => '',
         ],
+        [
+            'checked' => 0,
+            'title' => 'Check footer address',
+            'description' => '',
+        ],
 
     ];
