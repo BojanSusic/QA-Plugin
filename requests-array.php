@@ -166,5 +166,10 @@
             'title' => 'Check footer address',
             'description' => '',
         ],
+        [
+            'checked' => 0,
+            'title' => 'Floor plans just for free flats',
+            'description' => '',
+        ],
 
     ];
