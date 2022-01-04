@@ -171,5 +171,10 @@
             'title' => 'Floor plans just for free flats',
             'description' => '',
         ],
+        [
+            'checked' => 0,
+            'title' => 'Center address in footer',
+            'description' => '',
+        ],
 
     ];
