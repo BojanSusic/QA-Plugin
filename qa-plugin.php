@@ -4,7 +4,7 @@
  * Plugin URI: https://singularity.is
  * Author: Miljana Pinic, Bojan Susic, Djordje Avram
  * Description: This is a qa plugin with checklist for object web pages
- * Version: 1.2
+ * Version: 1.3
  * GitHub Plugin URI: BojanSusic/qa-plugin.git
  * GitHub Plugin URI: https://github.com/BojanSusic/qa-plugin.git
  **/
