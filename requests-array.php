@@ -176,5 +176,9 @@
             'title' => 'Center address in footer',
             'description' => '',
         ],
-
+        [
+            'checked' => 0,
+            'title' => 'Check flats table on mobile',
+            'description' => 'Check that content is same in desktop and mobile table',
+        ],
     ];
